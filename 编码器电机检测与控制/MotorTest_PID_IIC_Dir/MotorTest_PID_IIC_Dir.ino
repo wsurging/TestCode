@@ -72,7 +72,6 @@ void setup()
   myPID2.SetMode(AUTOMATIC);
   myPID1.SetOutputLimits(0, 4095);
   myPID2.SetOutputLimits(0, 4095);
-  error = ps2x.config_gamepad(PS2_CLK, PS2_CMD, PS2_SEL, PS2_DAT, pressures, rumble);
   pwm.begin();
   pwm.setPWMFreq(1600);  // Set to whatever you like, we don't use it in this demo!
   Wire.setClock(400000);

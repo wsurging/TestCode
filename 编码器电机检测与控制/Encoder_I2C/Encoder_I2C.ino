@@ -1,17 +1,17 @@
 #include <PinChangeInterrupt.h>
 #include <MotorDriver.h>
 
-#define ENCODEROUTPUT 24  // 每次旋转插入电机编码器输出脉冲
-#define ENCODER_A 7       //编码器检测引脚
-int Val = 2048;           //电机占空比 0-4096;
+#define ENCODEROUTPUT 12  // 每次旋转插入电机编码器输出脉冲
+#define ENCODER_A 4       //编码器检测引脚 D4
+int Val = 4096;           //电机占空比 0-4096;
 
-int interval = 100;       //采样时间
+int interval = 1000;       //采样时间
 int rpm = 0;
 long previousMillis = 0;
 long currentMillis = 0;
 volatile long encoderValue = 0;
 bool testflag = false;
-#define MOTORTYPE YF_IIC_TB   //
+#define MOTORTYPE YF_IIC_TB   
 uint8_t SerialDebug = 1; // 串口打印调试 0-否 1-是
 
 const int offsetm1 = 1;
@@ -36,14 +36,16 @@ void setup()
 
 void loop()
 {
-  motorDriver.setSingleMotor(M3, Val);   // 电机M1 1500/4096 正转
+  motorDriver.setSingleMotor(M1, Val);   // 电机M1 1500/4096 正转
   currentMillis = millis();   //每秒更新RPM值
   if (currentMillis - previousMillis > interval) {
     previousMillis = currentMillis;
 
     // 每分钟转数（RPM）= （编码器总脉冲数/电机编码器输出）x 60s
     rpm = (float)(encoderValue * 60 / ENCODEROUTPUT);
-    //换算小车速度M/S，65mm直径轮子，减速比4.5：1
+    
+    //换算小车速度M/S，65mm直径轮子换算出距离为0.2m，减速比4.5：1 ，除以60换算为秒，
+    //在输出轴上安装的码盘不需要除以减速比
     float Speed = (rpm * 0.2 / 4.5 / 60);
     Serial.print(encoderValue);
     Serial.print(" cpr ");

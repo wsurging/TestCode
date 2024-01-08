@@ -3,7 +3,7 @@
 
   Hardware Connections:
   Arduino Pin     Wifi视频传输模块
-  3.3v --------   VCC
+  3.3v --------   VCC 
   GND  --------   GND
   RX   --------   TX
 
@@ -49,7 +49,6 @@ Servo myservo3;
 
 void setup() {   //程序初始化，只运行一次
   Serial.begin(19200);
-  Serial.println("Begin...");
   pinMode(13, OUTPUT);
   pinMode(DIR, OUTPUT);
   pinMode(PWM, OUTPUT);
@@ -95,7 +94,7 @@ void serialCom() {  //数据通讯
         evaluateCommand();                                    // 数据处理程序
       c_state = IDLE;                                         // 返回IDLE状态
     }
-  }
+  } 
 }
 
 /*****************************************************************
@@ -183,17 +182,5 @@ void evaluateCommand() {
     case 0x42:                               // 降落键 开灯状态，关闭状态为0x02
       digitalWrite(13, LOW);
       break;
-      //    case 0x44:                               // 停止键 开灯状态，关闭状态为0x04
-      //      //      Stop();
-      //      break;
-      //    case 0x48:                               // 360°翻转键 开灯状态，关闭状态为0x08
-      //      digitalWrite(13, HIGH);
-      //      break;
-      //    case 0x50:                               // 无头模式键 开灯状态，关闭状态为0x10
-      //      digitalWrite(13, HIGH);
-      //      break;
-      //    case 0xC0:                               // 飞控校准键 开灯状态，关闭状态为
-      //      digitalWrite(13, HIGH);
-      //      break;
   }
 }
