@@ -1,0 +1,5 @@
+{
+    "sketch": "Bridge.ino",
+    "port": "COM15",
+    "board": "arduino:avr:uno"
+}

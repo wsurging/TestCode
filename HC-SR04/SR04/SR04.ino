@@ -1,5 +1,5 @@
-const int TrigPin = A0;
-const int EchoPin = A1;
+const int TrigPin = A1;
+const int EchoPin = A0;
 int cm;
  
 void setup()
