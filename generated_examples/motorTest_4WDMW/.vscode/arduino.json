@@ -1,5 +1,0 @@
-{
-    "sketch": "motorTest_4WDMW.ino",
-    "port": "COM15",
-    "board": "arduino:avr:uno"
-}
